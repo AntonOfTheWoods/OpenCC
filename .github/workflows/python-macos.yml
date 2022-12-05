@@ -1,0 +1,21 @@
+name: Python Mac test CI
+
+on:
+  push:
+    branches: [ testmacos ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-compilation:
+
+    strategy:
+      matrix:
+        os: [macos-11]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build package (macOS)
+      run: bash test-pypi-macos.sh
